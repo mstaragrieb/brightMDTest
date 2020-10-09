@@ -203,12 +203,30 @@ export default function App() {
               </ListItem>
             </Link>
 
-            <Link to="/users" className={classes.navLink}>
+            <Link to="/hours_one" className={classes.navLink}>
               <ListItem button>
                 <ListItemIcon>
                   <PeopleIcon />
                 </ListItemIcon>
-                <ListItemText primary="Users" />
+                <ListItemText primary="Hours One" />
+              </ListItem>
+            </Link>
+
+            <Link to="/hours_two" className={classes.navLink}>
+              <ListItem button>
+                <ListItemIcon>
+                  <PeopleIcon />
+                </ListItemIcon>
+                <ListItemText primary="Hours Two" />
+              </ListItem>
+            </Link>
+
+            <Link to="/hours_admin" className={classes.navLink}>
+              <ListItem button>
+                <ListItemIcon>
+                  <PeopleIcon />
+                </ListItemIcon>
+                <ListItemText primary="Hours Admin" />
               </ListItem>
             </Link>
           </List>
@@ -218,9 +236,10 @@ export default function App() {
           <div className={classes.appBarSpacer} />
           <Container maxWidth="lg" className={classes.container}>
             <Switch>
-              <Route exact path="/" component={Dashboard} />
-              <Route exact path="/businesses" component={UserList} />
-              <Route exact path="/users" component={UserList} />
+            <Route exact path="/" component={Dashboard} />
+            <Route exact path="/hours_one" component={HoursOne} />
+            <Route exact path="/hours_two" component={HoursTwo} />
+            <Route exact path="/hours_admin" component={HoursAdmin} />
             </Switch>
 
             <Box pt={4}>
