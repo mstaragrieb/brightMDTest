@@ -14,68 +14,6 @@ type User {
     )
 }
 
-type Hospital {
-   _id: Long!
-   address: String!
-   hours_fri: String!
-   hours_mon: String!
-   hours_sat: String!
-   hours_sun: String!
-   hours_thurs: String!
-   hours_tues: String!
-   hours_wed: String!
-   location_time_zone: String!
-   name: String!
-   has_special: [SpecialHours] @relation(name: "HAS_SPECIAL", direction: "OUT")
-   HAS_SPECIAL_rel: [HAS_SPECIAL]
-   in_zone: [TimeZone] @relation(name: "IN_ZONE", direction: "OUT")
-   users: [User] @relation(name: "ADMINS", direction: "IN")
-}
-
-type TimeZone {
-   _id: Long!
-   abbreviation: String!
-   deviation: String!
-   name: String!
-   standardHours: Int!
-   standardOperator: String!
-   has_deviation: [TimeZoneDeviation] @relation(name: "HAS_DEVIATION", direction: "OUT")
-   hospitals: [Hospital] @relation(name: "IN_ZONE", direction: "IN")
-}
-
-type TimeZoneDeviation {
-   _id: Long!
-   endDate: String!
-   fromNormalHours: Int!
-   fromNormalOperator: String!
-   name: String!
-   startDate: String!
-   timezones: [TimeZone] @relation(name: "HAS_DEVIATION", direction: "IN")
-}
-
-
-
-type SpecialHours {
-   _id: Long!
-   date: String!
-   hours: String
-   name: String!
-   type: String!
-   hospitals: [Hospital] @relation(name: "HAS_SPECIAL", direction: "IN")
-}
-
-type ADMINS @relation(name: "ADMINS") {
-  from: User!
-  to: Hospital!
-  rights: String!
-}
-
-type HAS_SPECIAL @relation(name: "HAS_SPECIAL") {
-  from: Hospital!
-  to: SpecialHours!
-  special: String!
-}
-
 type Business {
   businessId: ID!
   name: String!

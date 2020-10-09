@@ -1,9 +1,6 @@
 import React from 'react'
 
 import { Switch, Route, BrowserRouter as Router } from 'react-router-dom'
-
-import UserList from './components/UserList'
-
 import clsx from 'clsx'
 import { makeStyles } from '@material-ui/core/styles'
 import {
@@ -30,13 +27,16 @@ import {
   People as PeopleIcon,
 } from '@material-ui/icons'
 import Dashboard from './components/Dashboard'
+import HoursOne from './components/HoursOne'
+import HoursTwo from './components/HoursTwo'
+import HoursAdmin from './components/HoursAdmin'
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
-      <MUILink color="inherit" href="https://grandstack.io/">
-        Your GRANDstack App Name Here
+      <MUILink color="inherit" href="https://www.github.com/mstaragrieb/">
+        Tara Grieb
       </MUILink>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -164,11 +164,6 @@ export default function App() {
             >
               <MenuIcon />
             </IconButton>
-            <img
-              className={classes.appBarImage}
-              src="img/grandstack.png"
-              alt="GRANDstack logo"
-            />
             <Typography
               component="h1"
               variant="h6"
@@ -176,7 +171,7 @@ export default function App() {
               noWrap
               className={classes.title}
             >
-              Welcome To GRANDstack App TS
+              Bright.MD Code Test - Hospital Hours
             </Typography>
           </Toolbar>
         </AppBar>
@@ -203,14 +198,33 @@ export default function App() {
               </ListItem>
             </Link>
 
-            <Link to="/users" className={classes.navLink}>
+            <Link to="/hours_one" className={classes.navLink}>
               <ListItem button>
                 <ListItemIcon>
                   <PeopleIcon />
                 </ListItemIcon>
-                <ListItemText primary="Users" />
+                <ListItemText primary="Hours One" />
               </ListItem>
             </Link>
+
+            <Link to="/hours_two" className={classes.navLink}>
+              <ListItem button>
+                <ListItemIcon>
+                  <PeopleIcon />
+                </ListItemIcon>
+                <ListItemText primary="Hours Two" />
+              </ListItem>
+            </Link>
+
+            <Link to="/hours_admin" className={classes.navLink}>
+              <ListItem button>
+                <ListItemIcon>
+                  <PeopleIcon />
+                </ListItemIcon>
+                <ListItemText primary="Hours Admin" />
+              </ListItem>
+            </Link>
+
           </List>
           <Divider />
         </Drawer>
@@ -219,8 +233,9 @@ export default function App() {
           <Container maxWidth="lg" className={classes.container}>
             <Switch>
               <Route exact path="/" component={Dashboard} />
-              <Route exact path="/businesses" component={UserList} />
-              <Route exact path="/users" component={UserList} />
+              <Route exact path="/hours_one" component={HoursOne} />
+              <Route exact path="/hours_two" component={HoursTwo} />
+              <Route exact path="/hours_admin" component={HoursAdmin} />
             </Switch>
 
             <Box pt={4}>
