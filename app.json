@@ -10,7 +10,7 @@
             "required": true
         },
         "NEO4J_PASSWORD": {
-            "description": "The passaword for the provided Neo4j database user",
+            "description": "The password for the provided Neo4j database user",
             "required": true
         }
     }
