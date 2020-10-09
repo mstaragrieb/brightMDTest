@@ -32,7 +32,6 @@ import {
   Dashboard as DashboardIcon,
   People as PeopleIcon,
 } from '@material-ui/icons'
-import Dashboard from './components/Dashboard'
 
 function Copyright() {
   return (
