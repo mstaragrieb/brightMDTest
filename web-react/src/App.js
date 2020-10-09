@@ -37,8 +37,8 @@ function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
-      <MUILink color="inherit" href="https://grandstack.io/">
-        Your GRANDstack App Name Here
+      <MUILink color="inherit" href="https://www.github.com/mstaragrieb/">
+        Tara Grieb
       </MUILink>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -165,12 +165,6 @@ export default function App() {
               )}
             >
               <MenuIcon />
-            </IconButton>
-            <img
-              className={classes.appBarImage}
-              src="img/grandstack.png"
-              alt="GRANDstack logo"
-            />
             <Typography
               component="h1"
               variant="h6"
@@ -178,7 +172,7 @@ export default function App() {
               noWrap
               className={classes.title}
             >
-              Welcome To GRANDstack App
+              Bright.MD Code Test - Hospital Hours
             </Typography>
           </Toolbar>
         </AppBar>
