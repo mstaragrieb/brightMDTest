@@ -1,0 +1,240 @@
+type Category {
+   _id: Long!
+   name: String!
+   businesss: [Business] @relation(name: "IN_CATEGORY", direction: "IN")
+}
+
+type Review {
+   _id: Long!
+   date: Date!
+   reviewId: String!
+   stars: Float!
+   text: String!
+   reviews: [Business] @relation(name: "REVIEWS", direction: "OUT")
+   users: [User] @relation(name: "WROTE", direction: "IN")
+}
+
+type Business {
+   _id: Long!
+   address: String!
+   businessId: String!
+   city: String!
+   location: Point!
+   name: String!
+   state: String!
+   in_category: [Category] @relation(name: "IN_CATEGORY", direction: "OUT")
+   reviews: [Review] @relation(name: "REVIEWS", direction: "IN")
+}
+
+type Hospital {
+   _id: Long!
+   address: String!
+   hours_fri: String!
+   hours_mon: String!
+   hours_sat: String!
+   hours_sun: String!
+   hours_thurs: String!
+   hours_tues: String!
+   hours_wed: String!
+   location_time_zone: String!
+   name: String!
+   has_special: [SpecialHours] @relation(name: "HAS_SPECIAL", direction: "OUT")
+   HAS_SPECIAL_rel: [HAS_SPECIAL]
+   in_zone: [TimeZone] @relation(name: "IN_ZONE", direction: "OUT")
+   users: [User] @relation(name: "ADMINS", direction: "IN")
+}
+
+type IA_User {
+   _id: Long!
+   caching: String!
+   devMode: Boolean!
+   image: String!
+   name: String!
+   password: String!
+   priority: Int!
+   shortcut: [IA_Function] @relation(name: "SHORTCUT", direction: "OUT")
+   dashboard: [IA_Dashboard] @relation(name: "DASHBOARD", direction: "OUT")
+   allow: [IA_Permission] @relation(name: "ALLOW", direction: "OUT")
+}
+
+type IA_Dashboard {
+   _id: Long!
+   iaName: String!
+   name: String!
+   uuid: String!
+   shortcut: [IA_Function] @relation(name: "SHORTCUT", direction: "OUT")
+   start: [IA_Function] @relation(name: "START", direction: "OUT")
+   START_rel: [START]
+}
+
+type IA_Permission {
+   _id: Long!
+   name: String!
+   ia_users: [IA_User] @relation(name: "ALLOW", direction: "IN")
+}
+
+type IA_Function {
+   _id: Long!
+   _instance: String
+   actions: String
+   allowFailure: String
+   css: String
+   cypher: String
+   executeOnEnter: String
+   gremlin: String
+   iaName: String
+   ids: String
+   method: String
+   name: String!
+   process: String
+   public: String
+   schema: String
+   sparql: String
+   stayAlive: String
+   store: String
+   type: String!
+   uischema: String
+   url: String
+   uuid: String!
+   trigger: [IA_Function] @relation(name: "TRIGGER", direction: "OUT")
+   TRIGGER_rel: [TRIGGER]
+   ia_dashboards: [IA_Dashboard] @relation(name: "START", direction: "IN")
+}
+
+type IA_UserPrototype {
+   _id: Long!
+   caching: String!
+   image: String!
+   name: String!
+   priority: Int!
+   uuid: String!
+   shortcut: [IA_Function] @relation(name: "SHORTCUT", direction: "OUT")
+   dashboard: [IA_Dashboard] @relation(name: "DASHBOARD", direction: "OUT")
+}
+
+type IA_UserStyles {
+   _id: Long!
+   STYLES: String!
+   name: String!
+   selectorsOrder: String!
+   uuid: String
+}
+
+type IA_UserSettings {
+   _id: Long!
+   name: String!
+   neighboursHidden: Int!
+   nodeHistory: String!
+   nodeHistoryHidden: Int!
+   queryHistory: String!
+   queryHistoryHidden: Int!
+   uuid: String
+}
+
+type IA_License {
+   _id: Long!
+   expires: String!
+   key: String!
+   name: String!
+   product: String!
+   s: String!
+}
+
+type IA_Diagram {
+   _id: Long!
+   filters: String!
+   name: String!
+   nodes: String!
+   overwrite: Boolean!
+   relations: String!
+   version: Int!
+}
+
+type SpecialHours {
+   _id: Long!
+   date: String!
+   hours: String
+   name: String!
+   type: String!
+   hospitals: [Hospital] @relation(name: "HAS_SPECIAL", direction: "IN")
+}
+
+type TimeZone {
+   _id: Long!
+   abbreviation: String!
+   deviation: String!
+   name: String!
+   standardHours: Int!
+   standardOperator: String!
+   has_deviation: [TimeZoneDeviation] @relation(name: "HAS_DEVIATION", direction: "OUT")
+   hospitals: [Hospital] @relation(name: "IN_ZONE", direction: "IN")
+}
+
+type TimeZoneDeviation {
+   _id: Long!
+   endDate: String!
+   fromNormalHour: Int!
+   fromNormalOperator: String!
+   name: String!
+   startDate: String!
+   timezones: [TimeZone] @relation(name: "HAS_DEVIATION", direction: "IN")
+}
+
+type User {
+   _id: Long!
+   name: String!
+   password: Int
+   role: String
+   userId: String!
+   username: String
+   wrote: [Review] @relation(name: "WROTE", direction: "OUT")
+   admins: [Hospital] @relation(name: "ADMINS", direction: "OUT")
+   ADMINS_rel: [ADMINS]
+}
+
+
+
+
+type TRIGGER @relation(name: "TRIGGER") {
+  from: IA_Function!
+  to: IA_Function!
+  action: String
+  condition: String
+  hoverStyle: String
+  icon: String
+  index: Int
+  menu: String
+  origin: String
+  output: String
+  status: String
+  style: String
+  true: String
+  type: String
+  uuid: String!
+}
+
+
+type START @relation(name: "START") {
+  from: IA_Dashboard!
+  to: IA_Function!
+  uuid: String!
+}
+
+
+
+
+type ADMINS @relation(name: "ADMINS") {
+  from: User!
+  to: Hospital!
+  rights: String!
+}
+
+type HAS_SPECIAL @relation(name: "HAS_SPECIAL") {
+  from: Hospital!
+  to: SpecialHours!
+  special: String!
+}
+
+
+
+
