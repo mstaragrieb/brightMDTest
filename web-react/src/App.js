@@ -3,7 +3,10 @@ import React from 'react'
 import { Switch, Route, BrowserRouter as Router } from 'react-router-dom'
 
 import UserList from './components/UserList'
-
+import Dashboard from './components/Dashboard'
+import HoursOne from './components/HoursOne'
+import HoursTwo from './components/HoursTwo'
+import HoursAdmin from './components/HoursAdmin'
 import clsx from 'clsx'
 import { makeStyles } from '@material-ui/core/styles'
 import {
