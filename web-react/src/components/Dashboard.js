@@ -32,6 +32,7 @@ export default function Dashboard() {
       <Grid container spacing={4}>
         {/* Ratings Chart */}
         <Grid item xs={12} md={8} lg={7}>
+        Hi
           <Paper className={fixedHeightPaper}>
             <RatingsChart />
           </Paper>
